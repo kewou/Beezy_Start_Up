@@ -10,6 +10,6 @@
         }
     ],
     "require": {
-        "mon-package": "^1.0.0"
+        "beezy": "^1.0.0"
     }
 }
