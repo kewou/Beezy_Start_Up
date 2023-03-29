@@ -1,5 +1,5 @@
 {
-    "name": "Beezy_Strart_Up",
+    "name": "beezy-start-up",
     "description": "Mon entreprise de prestation en formation et création de logiciel",
     "type": "project",
     "license": "MIT",
@@ -8,5 +8,8 @@
             "name": "NOUMIA",
             "email": "kewou.noumia@gmail.com"
         }
-    ]
+    ],
+    "require": {
+        "mon-package": "^1.0.0"
+    }
 }
