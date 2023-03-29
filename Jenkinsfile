@@ -11,5 +11,10 @@ pipeline {
                 sh 'php -v'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'php phing'
+            }
+        }        
     }
 }
