@@ -6,9 +6,9 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Install Dependencies') {
+        stage('Version') {
             steps {
-                sh 'composer install'
+                sh 'php -v'
             }
         }
     }
