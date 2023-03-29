@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'php phing'
+                sh 'sh phing'
             }
         }        
     }
