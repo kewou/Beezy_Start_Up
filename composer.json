@@ -1,0 +1,12 @@
+{
+    "name": "Beezy_Strart_Up",
+    "description": "Mon entreprise de prestation en formation et création de logiciel",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "NOUMIA",
+            "email": "kewou.noumia@gmail.com"
+        }
+    ]
+}
