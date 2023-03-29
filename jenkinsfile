@@ -6,9 +6,9 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Version') {
             steps {
-                sh 'phing'
+                sh 'php -v'
             }
         }
     }
