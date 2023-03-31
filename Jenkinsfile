@@ -6,6 +6,11 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Update') {
+            steps {
+                sh 'composer update'
+            }
+        }        
         stage('Install dependencies') {
             steps {
                 sh 'composer install'
