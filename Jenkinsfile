@@ -11,7 +11,7 @@ pipeline {
                 sh 'composer install'
             }
         }
-        stage('Build Image) {
+        stage('Build Image') {
             steps {
                 sh 'docker.build("NOUMIA/beezyImage:${BUILD_NUMBER}")'
             }
