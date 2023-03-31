@@ -6,15 +6,15 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Version') {
-            steps {
-                sh 'php -v'
-            }
-        }
-        stage('Build') {
+        stage('Install dependencies') {
             steps {
                 sh 'composer install'
             }
-        }        
+        }
+        stage('Build Image) {
+            steps {
+                sh 'docker.build("NOUMIA/beezyImage:${BUILD_NUMBER}")'
+            }
+        }
     }
 }
