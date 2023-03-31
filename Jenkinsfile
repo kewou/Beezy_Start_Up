@@ -18,7 +18,9 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker.build("NOUMIA/beezyImage:${BUILD_NUMBER}")'
+                script { 
+                    docker.build("NOUMIA/beezyImage:${BUILD_NUMBER}")
+                }
             }
         }
     }
