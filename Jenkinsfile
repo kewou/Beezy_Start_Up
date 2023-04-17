@@ -15,6 +15,11 @@ pipeline {
             steps {
                 sh 'composer install'
             }
-        }        
+        }
+        stage('Build Image') {
+            steps {
+                sh 'docker version'
+            }
+        }
     }
 }
