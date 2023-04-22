@@ -19,9 +19,10 @@ pipeline {
                 sh 'composer install'
             }
         }
-        stage('Build Version') {
+        stage('WORKSPACE') {
             steps {
-                sh 'docker --version'
+                sh 'pwd '
+                sh 'echo ${WORKSPACE}'
             }
         }
     }
