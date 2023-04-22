@@ -1,7 +1,9 @@
 pipeline {
-    agent any
-    tools {
-        dockerTool 'docker'
+    agent {
+        docker {
+            image 'docker:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
     }
     stages {
         stage('Checkout') {
@@ -19,9 +21,9 @@ pipeline {
                 sh 'composer install'
             }
         }
-        stage('Build Image') {
+        stage('Docker version') {
             steps {
-                sh 'docker build -t beezy_start_up'
+                sh 'docker version'
             }
         }
     }
