@@ -7,8 +7,10 @@ pipeline {
         IMAGE_NAME = "beezy_start_up"
         APP_VERSION = "0.0.2"
         ARCHIVE = "${IMAGE_NAME}_${APP_VERSION}.tar"
-        NEXUS_URL = "http://localhost:8085/repository/docker-private"
-        NEXUS_REPO = "BeezyStartUpRepo"
+        DOCKER_REGISTRY_URL = "http://172.17.0.3:8085"
+        DOCKER_REPO = "${DOCKER_REGISTRY_URL}/$IMAGE_NAME:${APP_VERSION}"        
+        NEXUS_PASSWORD = "sonarSbeezy"
+        NEXUS_USERNAME = "admin"
     }
     stages {
         stage('Checkout') {
@@ -27,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('Archive') {
+        stage('Archive and Save') {
             steps {
                 // Create a tar archive of the Docker image               
                 sh "docker save -o $ARCHIVE $IMAGE_NAME"
@@ -38,6 +40,16 @@ pipeline {
                 '''
                 sh "mv $ARCHIVE VersionsArchives"             
             }
-        }              
+        }
+        stage('Docker login') {
+            steps{
+                sh '''
+                    echo $NEXUS_PASSWORD | docker login -u $NEXUS_USERNAME --password-stdin $DOCKER_REGISTRY_URL
+                '''
+            }
+        }
+        stage('Push On Nexus')  {
+            sh " docker push ${DOCKER_REPO}"
+        }      
     }
 }
