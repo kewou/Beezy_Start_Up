@@ -4,7 +4,10 @@ pipeline {
         dockerTool 'docker'
     }
     environment {
-        APP_VERSION = "0.0.1-SNAPSHOT"
+        IMAGE_NAME = "beezy_start_up"
+        APP_VERSION = "0.0.2"
+        NEXUS_URL = "http://localhost:8085/repository/docker-private"
+        NEXUS_REPO = "BeezyStartUpRepo"
     }
     stages {
         stage('Checkout') {
@@ -14,18 +17,32 @@ pipeline {
         }
         stage('Update') {
             steps {
-                sh 'composer update'
+                sh "composer update"
             }
         }        
         stage('Install dependencies') {
             steps {
-                sh 'composer install'
+                sh "composer install"
             }
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t beezy_start_up:$APP_VERSION .'
+                sh "docker build -t $IMAGE_NAME:$APP_VERSION ."
             }
         }
+        stage('Archive') {
+            steps {
+                // Create a tar archive of the Docker image
+                sh "docker save $IMAGE_NAME:$APP_VERSION -o $IMAGE_NAME_$APP_VERSION.tar"              
+            }
+        }
+        stage('Deploy on Nexus') {
+            steps {               
+                // Upload the archive to Nexus
+                sh "curl -v --upload-file $IMAGE_NAME_$APP_VERSION.tar $NEXUS_URL/$NEXUS_REPO/$IMAGE_NAME$APP_VERSION.tar"
+                // Delete the archive from the local disk
+                sh "rm $IMAGE_NAME_$APP_VERSION.tar"
+            }
+        }        
     }
 }
