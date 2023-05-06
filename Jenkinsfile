@@ -31,7 +31,7 @@ pipeline {
                 // Create a tar archive of the Docker image
                 sh "ARCHIVE = ${IMAGE_NAME}_${APP_VERSION}.tar"
                 sh "echo $ARCHIVE"
-                sh "docker save -o $ARCHIVE $IMAGE_NAME"              
+                sh "docker save ${IMAGE_NAME} | gzip > ${ARCHIVE}.gz"              
             }
         }
         stage('Deploy on Nexus') {
