@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    tools {
+        dockerTool 'docker'
+    }
+    environment {
+        APP_VERSION = "0.0.1-SNAPSHOT"
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -15,6 +21,11 @@ pipeline {
             steps {
                 sh 'composer install'
             }
-        }        
+        }
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t beezy_start_up:$APP_VERSION .'
+            }
+        }
     }
 }
