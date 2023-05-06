@@ -25,17 +25,13 @@ pipeline {
                 sh "composer install"
             }
         }
-        stage('Build Image') {
-            steps {
-                sh "docker build -t $IMAGE_NAME:$APP_VERSION ."
-            }
-        }
+
         stage('Archive') {
             steps {
                 // Create a tar archive of the Docker image
                 sh "ARCHIVE = ${IMAGE_NAME}_${APP_VERSION}.tar"
                 sh "echo $ARCHIVE"
-                sh "docker save ${IMAGE_NAME}:${APP_VERSION} -o $ARCHIVE"              
+                sh "docker save -o $ARCHIVE $IMAGE_NAME"              
             }
         }
         stage('Deploy on Nexus') {
