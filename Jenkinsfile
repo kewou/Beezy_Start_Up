@@ -31,7 +31,12 @@ pipeline {
             steps {
                 // Create a tar archive of the Docker image               
                 sh "docker save -o $ARCHIVE $IMAGE_NAME"
-                sh "mv $ARCHIVE /VersionsArchives"              
+                sh '''
+                    if [ ! -d "VersionsArchives" ]; then
+                        mkdir "/VersionsArchives"
+                    fi
+                '''
+                sh "mv $ARCHIVE /VersionsArchives"             
             }
         }
               
