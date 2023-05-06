@@ -44,7 +44,7 @@ pipeline {
                     HOST="ftp.beezyweb.net"
                     USER="beezyweb.net"
                     PASSWD="delphine12"
-                    FILE="VersionsArchives/${ARCHIVE}"
+                    FILE="VersionsArchives/test.txt"
                     ftp -n $HOST <<END_SCRIPT
                     quote USER $USER
                     quote PASS $PASSWD
