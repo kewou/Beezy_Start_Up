@@ -6,6 +6,7 @@ pipeline {
     environment {
         IMAGE_NAME = "beezy_start_up"
         APP_VERSION = "0.0.2"
+        ARCHIVE = "${IMAGE_NAME}_${APP_VERSION}.tar"
         NEXUS_URL = "http://localhost:8085/repository/docker-private"
         NEXUS_REPO = "BeezyStartUpRepo"
     }
@@ -28,10 +29,9 @@ pipeline {
 
         stage('Archive') {
             steps {
-                // Create a tar archive of the Docker image
-                sh "ARCHIVE = ${IMAGE_NAME}_${APP_VERSION}.tar"
+                // Create a tar archive of the Docker image                
                 sh "echo $ARCHIVE"
-                sh "docker save ${IMAGE_NAME} | gzip > ${ARCHIVE}.gz"              
+                sh "docker save $IMAGE_NAME | gzip > $ARCHIVE.gz"              
             }
         }
         stage('Deploy on Nexus') {
