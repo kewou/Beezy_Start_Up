@@ -33,7 +33,7 @@ pipeline {
         stage('Archive') {
             steps {
                 // Create a tar archive of the Docker image
-                sh "docker save $IMAGE_NAME:$APP_VERSION -o $IMAGE_NAME-$APP_VERSION.tar"              
+                sh "docker save $IMAGE_NAME:$APP_VERSION -o $IMAGE_NAME$APP_VERSION.tar"              
             }
         }      
     }
