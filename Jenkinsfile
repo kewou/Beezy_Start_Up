@@ -27,10 +27,5 @@ pipeline {
                 sh 'docker build -t beezy_start_up:$APP_VERSION .'
             }
         }
-        stage('Run Image') {
-            steps{
-                sh 'docker run -p 8082:80 --name Beezy_START_UP -v /home/noumia/.docker/www/Beezy_Start_Up:/var/www/html beezy_start_up:$APP_VERSION'
-            }
-        }
     }
 }
