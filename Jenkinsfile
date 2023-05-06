@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t beezy_start_up .'
+                sh 'docker build -t beezy_start_up:0.0.1 .'
             }
         }
     }
