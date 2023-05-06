@@ -41,16 +41,20 @@ pipeline {
                 sh "mv $ARCHIVE VersionsArchives"             
             }
         }
-        stage('Docker login') {
+
+        stage('Deploy on Production')  {
             steps{
-                sh '''
-                    docker login -u $NEXUS_USERNAME -p "$NEXUS_PASSWORD" $DOCKER_REGISTRY_URL
-                '''
-            }
-        }
-        stage('Push On Nexus')  {
-            steps{
-                sh " docker push ${DOCKER_REPO}"
+                ftpPublisher(
+                    credentialsId: '',
+                    serverName: 'ftp.beezyweb.net',
+                    transfers: [
+                        ftp {
+                            remoteFile: 'test.txt',
+                            localFile: 'VersionsArchives/test.txt',
+                            direction: 'put'
+                        }
+                    ]
+                )
             }
         }      
     }
