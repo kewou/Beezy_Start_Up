@@ -31,7 +31,7 @@ pipeline {
             steps {
                 // Create a tar archive of the Docker image                
                 sh "echo $ARCHIVE"
-                sh "docker save $IMAGE_NAME | gzip > $ARCHIVE.gz"              
+                sh "docker save -o $ARCHIVE $IMAGE_NAME"              
             }
         }
         stage('Deploy on Nexus') {
