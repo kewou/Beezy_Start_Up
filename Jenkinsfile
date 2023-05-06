@@ -49,9 +49,9 @@ pipeline {
                     serverName: 'ftp.beezyweb.net',
                     transfers: [
                         ftp {
-                            remoteFile: 'Beezy_Start_Up',
-                            localFile: 'VersionsArchives/test.txt',
-                            direction: 'put'
+                            remoteFile: "Beezy_Start_Up",
+                            localFile: "VersionsArchives/test.txt",
+                            direction: "put"
                         }
                     ]
                 )
