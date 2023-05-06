@@ -49,7 +49,9 @@ pipeline {
             }
         }
         stage('Push On Nexus')  {
-            sh " docker push ${DOCKER_REPO}"
+            steps{
+                sh " docker push ${DOCKER_REPO}"
+            }
         }      
     }
 }
