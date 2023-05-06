@@ -7,11 +7,6 @@ pipeline {
         IMAGE_NAME = "beezy_start_up"
         APP_VERSION = "0.0.2"
         ARCHIVE = "${IMAGE_NAME}_${APP_VERSION}.tar"
-        DOCKER_REGISTRY_URL = "http://172.17.0.3:8085"
-        DOCKER_REPO = "${DOCKER_REGISTRY_URL}/$IMAGE_NAME:${APP_VERSION}"        
-        NEXUS_PASSWORD = "sonarSbeezy"
-        NEXUS_USERNAME = "admin"
-    }
     stages {
         stage('Checkout') {
             steps {
@@ -44,17 +39,18 @@ pipeline {
 
         stage('Deploy on Production')  {
             steps{
-                ftpPublisher(
-                    credentialsId: '06c30e65-ea15-46e0-a17e-9137b812844b',
-                    serverName: 'ftp.beezyweb.net',
-                    transfers: [
-                        ftp {
-                            remoteFile: "Beezy_Start_Up",
-                            localFile: "VersionsArchives/test.txt",
-                            direction: "put"
-                        }
-                    ]
-                )
+                sh '''
+                    HOST="ftp.beezyweb.net"
+                    USER="beezyweb.net"
+                    PASSWD="delphine12"
+                    FILE="myfile.txt"
+                    ftp -n $HOST <<END_SCRIPT
+                    quote USER $USER
+                    quote PASS $PASSWD
+                    put $FILE
+                    quit
+                    END_SCRIPT
+                '''            
             }
         }      
     }
