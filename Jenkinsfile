@@ -45,11 +45,11 @@ pipeline {
         stage('Deploy on Production')  {
             steps{
                 ftpPublisher(
-                    credentialsId: '',
+                    credentialsId: '06c30e65-ea15-46e0-a17e-9137b812844b',
                     serverName: 'ftp.beezyweb.net',
                     transfers: [
                         ftp {
-                            remoteFile: 'test.txt',
+                            remoteFile: 'Beezy_Start_Up',
                             localFile: 'VersionsArchives/test.txt',
                             direction: 'put'
                         }
