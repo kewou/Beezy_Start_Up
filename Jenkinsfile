@@ -7,6 +7,7 @@ pipeline {
         IMAGE_NAME = "beezy_start_up"
         APP_VERSION = "0.0.2"
         ARCHIVE = "${IMAGE_NAME}_${APP_VERSION}.tar"
+    }
     stages {
         stage('Checkout') {
             steps {
