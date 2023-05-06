@@ -33,13 +33,13 @@ pipeline {
         stage('Archive') {
             steps {
                 // Create a tar archive of the Docker image
-                sh "docker save $IMAGE_NAME:$APP_VERSION -o $IMAGE_NAME_$APP_VERSION.tar"              
+                sh "docker save $IMAGE_NAME:$APP_VERSION -o $IMAGE_NAME-$APP_VERSION.tar"              
             }
         }
         stage('Deploy on Nexus') {
             steps {               
                 // Upload the archive to Nexus
-                sh "curl -v --upload-file $IMAGE_NAME_$APP_VERSION.tar $NEXUS_URL/$NEXUS_REPO/$IMAGE_NAME$APP_VERSION.tar"
+                sh "curl -v --upload-file $IMAGE_NAME-$APP_VERSION.tar $NEXUS_URL/$NEXUS_REPO/$IMAGE_NAME-$APP_VERSION.tar"
                 // Delete the archive from the local disk
                 sh "rm $IMAGE_NAME_$APP_VERSION.tar"
             }
