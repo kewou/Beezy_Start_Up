@@ -19,10 +19,9 @@ pipeline {
                 sh 'composer install'
             }
         }
-        stage('WORKSPACE') {
+        stage('Build Image') {
             steps {
-                sh 'pwd '
-                sh 'echo ${WORKSPACE}'
+                sh 'docker build -t beezy_start_up .'
             }
         }
     }
