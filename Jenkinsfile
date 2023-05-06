@@ -33,12 +33,11 @@ pipeline {
                 sh "docker save -o $ARCHIVE $IMAGE_NAME"
                 sh '''
                     if [ ! -d "VersionsArchives" ]; then
-                        mkdir "/VersionsArchives"
+                        mkdir "VersionsArchives"
                     fi
                 '''
-                sh "mv $ARCHIVE /VersionsArchives"             
+                sh "mv $ARCHIVE VersionsArchives"             
             }
-        }
-              
+        }              
     }
 }
