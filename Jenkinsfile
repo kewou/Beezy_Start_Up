@@ -44,7 +44,7 @@ pipeline {
         stage('Docker login') {
             steps{
                 sh '''
-                    echo $NEXUS_PASSWORD | docker login -u $NEXUS_USERNAME --password-stdin $DOCKER_REGISTRY_URL
+                    docker login -u $NEXUS_USERNAME -p "$NEXUS_PASSWORD" $DOCKER_REGISTRY_URL
                 '''
             }
         }
