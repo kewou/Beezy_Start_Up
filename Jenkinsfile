@@ -44,10 +44,14 @@ pipeline {
                     HOST="ftp.beezyweb.net"
                     USER="beezyweb.net"
                     PASSWD="delphine12"
+                    PORT=21
+                    DIR="/Beezy_Start_Up"
                     FILE="VersionsArchives/test.txt"
-                    ftp -n $HOST <<END_SCRIPT
+                    ftp -i -n $HOST $PORT<<END_SCRIPT
                     quote USER $USER
                     quote PASS $PASSWD
+                    pwd
+                    bin
                     put $FILE
                     quit
                     END_SCRIPT
