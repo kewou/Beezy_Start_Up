@@ -34,7 +34,7 @@ pipeline {
                         mkdir "VersionsArchives"
                     fi
                 '''
-                sh zip -r $ARCHIVE .
+                sh "zip -r $ARCHIVE ."
                 sh "mv $ARCHIVE VersionsArchives"             
             }
         }
