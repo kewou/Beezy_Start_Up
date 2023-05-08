@@ -54,7 +54,8 @@ pipeline {
                     pwd
                     cd $DIR
                     bin
-                    put $FILE
+                    touch fuck.txt
+                    put fuck.txt
                     quit
                     END_SCRIPT
                 '''            
