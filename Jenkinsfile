@@ -46,7 +46,7 @@ pipeline {
                     USER="beezyweb.net"
                     PASSWD="delphine12"
                     PORT=21
-                    DIR="/Beezy_Start_Up"
+                    DIR="puBeezy_Start_Up"
                     FILE="VersionsArchives/${ARCHIVE}"
                     ftp -i -n $HOST $PORT<<END_SCRIPT
                     quote USER $USER
