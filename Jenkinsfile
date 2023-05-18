@@ -25,6 +25,12 @@ pipeline {
             }
         }
 
+        stage('Build Image') {
+            steps {
+                sh "docker build -t $IMAGE_NAME:$APP_VERSION ."
+            }
+        }
+
         stage('Archive and Save') {
             steps {
                 // Create a tar archive of the Docker image               
@@ -36,29 +42,6 @@ pipeline {
                 '''
                 sh "zip -r $ARCHIVE ."
                 sh "mv $ARCHIVE VersionsArchives"             
-            }
-        }
-
-        stage('Deploy on Production')  {
-            steps{
-                sh '''
-                    HOST="ftp.beezyweb.net"
-                    USER="beezyweb.net"
-                    PASSWD="delphine12"
-                    PORT=21
-                    DIR="Beezy_Start_Up"
-                    FILE="VersionsArchives/${ARCHIVE}"
-                    ftp -i -n $HOST $PORT<<END_SCRIPT
-                    quote USER $USER
-                    quote PASS $PASSWD
-                    pwd
-                    cd $DIR
-                    bin
-                    touch fuck.txt
-                    put fuck.txt
-                    quit
-                    END_SCRIPT
-                '''            
             }
         }      
     }
