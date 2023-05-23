@@ -1,7 +1,5 @@
 pipeline {
     agent any
-<<<<<<< HEAD
-=======
     tools {
         dockerTool 'docker'
     }
@@ -10,7 +8,6 @@ pipeline {
         APP_VERSION = "0.0.2"
         ARCHIVE = "${IMAGE_NAME}_${APP_VERSION}.zip"
     }
->>>>>>> branchForDelete
     stages {
         stage('Checkout') {
             steps {
