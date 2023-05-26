@@ -28,7 +28,7 @@ mv * ../Beezy_Start_Up
 mv Beezy_Start_Up.zip ~/Bureau
 
 
-# 1 - Supprimer le dossier de production à la main
+# 1 - Supprimer le dossier Beezy_Start_Up de production à la main
 # 2 - zip -r Beezy_Start_Up.zip ../Beezy_Start_Up -> copier l archive sur le bureau
 # 3 - Télécharger l 'archive depuis l IHM
 # 4 - Nettoyage -> Supprimer l'archive sur le Bureau, supprimer le dossier Beezy_Start_Up dans le projet local
