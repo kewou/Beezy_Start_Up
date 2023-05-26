@@ -5,14 +5,10 @@ FROM php:7.4-apache
 WORKDIR /var/www/html
 
 # Copiez les fichiers de votre projet PHP dans le conteneur
-<<<<<<< HEAD
-COPY . .
-=======
 COPY . /var/www/html
 
 # Définir un point de montage pour les fichiers de données
 VOLUME /var/www/html/data
->>>>>>> branchForDelete
 
 # Installez les dépendances de votre projet PHP avec Composer
 RUN apt-get update && apt-get install -y git && \
